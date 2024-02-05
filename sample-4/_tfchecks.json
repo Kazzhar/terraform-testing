@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "code": "CUS002",
+      "description": "Custom check to ensure required tags are applied to S3 buckets",
+      "impact": "Lack of required tags may lead to difficulties in resource management",
+      "resolution": "Add the necessary tags to the S3 bucket",
+      "requiredTypes": [
+        "resource"
+      ],
+      "requiredLabels": [
+        "aws_s3_bucket"
+      ],
+      "severity": "ERROR",
+      "matchSpec": {
+        "name": "tags",
+        "action": "containsAll",
+        "value": ["Name", "Environment"]
+      },
+      "errorMessage": "The required tags (Name, Environment) were missing in the S3 bucket",
+      "relatedLinks": [
+        "http://internal.acmecorp.com/standards/aws/tagging.html"
+      ]
+    }
+  ]
+}
